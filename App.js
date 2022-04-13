@@ -6,6 +6,8 @@ import { useFonts } from "expo-font";
 import Home from "./screens/Home";
 import Details from "./screens/Details";
 
+import TabNavigation from "./screens/TabNavigation"
+
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -29,7 +31,8 @@ const App = () => {
 
   return (
     <NavigationContainer theme={theme}>
-      <Stack.Navigator
+     
+      {/* <Stack.Navigator
         screenOptions={{
           headerShown: false,
         }}
@@ -37,7 +40,9 @@ const App = () => {
       >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Details" component={Details} />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+
+      <TabNavigation/>
     </NavigationContainer>
   );
 };
