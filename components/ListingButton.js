@@ -1,17 +1,29 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
 import { COLORS } from '../constants';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Listing  from '../screens/Listing';
 
-const ListingButton = ({navigation}) => {
+
+
+const ListingButton = ({onPress}) => {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('List')}>
-    <View style = {styles.container}>
-        <Icons name ="plus" color={COLORS.primary} size={35}/>
-    </View>
-    </TouchableOpacity>
+    
+        <View style = {styles.container}>
+             <Icons 
+                 name ="plus" 
+                color={COLORS.primary} 
+                size={35}
+            />
+            <Button title='' onPress={onPress}/>
+        </View>
+
+
+
+        
+    
+
+
   )
 }
 
@@ -26,8 +38,9 @@ const styles = StyleSheet.create({
         bottom: 15,
         alignItems: 'center',
         justifyContent: 'center',
-
+ 
 
     }
+  
 });
 export default ListingButton
