@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, SafeAreaView, FlatList } from "react-native";
+import {NavigationActions} from 'react-navigation';
 
 import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, NFTData } from "../constants";
@@ -33,7 +34,7 @@ const Home = ({navigation}) => {
             renderItem={({ item }) => <NFTCard data={item} />}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
-            ListHeaderComponent={<HomeHeader onSearch={handleSearch} />}
+            ListHeaderComponent={<HomeHeader navigation={navigation} onSearch={handleSearch} />}
           />
         </View>
 

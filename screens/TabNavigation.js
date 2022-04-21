@@ -6,11 +6,10 @@ import Icons from 'react-native-vector-icons/Feather'
 import { COLORS, SIZES, SHADOWS, assets } from "../constants";
 
 
-import Account from "./Account"
 import StackNavigator from "./StackNavigator";
 import Listing from "./Listing";
+import NewListing from "./NewListing"
 import ListingButton from "../components/ListingButton";
-import { Button } from 'react-native-web';
 
 
 
@@ -35,14 +34,14 @@ function MyTabs({navigation}) {
 
       <Tab.Screen 
         name="NewList" 
-        component={Listing} 
+        component={NewListing} 
         options={{ 
           tabBarIcon : ({color, size}) => (
         <Icons name ="plus-circle" color={color} size={size}/>)
          }}
          
       />
-      <Tab.Screen name="List"  component={Account} 
+      <Tab.Screen name="List"  component={Listing} 
         options={{ tabBarIcon : ({color, size}) =>
          <Icons name ="tag" color={color} size={size}/> }}
       />
