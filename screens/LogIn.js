@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import DesoIdentity from '../libs/DesoIdentity';
-import { useNavigation } from '@react-navigation/core'
+import { useNavigation } from "@react-navigation/native";
+import axios from 'axios';
+import DesoLogin from "../components/DesoLogin";
 // import { View, Text, TextInput, SafeAreaView, StyleSheet, TouchableHighlight, Image, StatusBar, FlatList } from "react-native";
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
@@ -10,10 +11,32 @@ import { CircleButton, RectButton, DetailsDesc, DetailsBid, FocusedStatusBar } f
 import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 const LogIn = () => {
+  const [loading, setLoading] = useState(null);
+  const [error, setError] = useState(null);
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [publicKey, setSetPublicKey] = useState(null)
+  const [desoIdentity, setDesoIdentity] = useState(null)
 
   const navigation = useNavigation()
+
+  const handleClick = () => {
+    // const derive = window.open('https://identity.deso.org/derive?callback=...');
+    // set
+  }
+  // useEffect(() => {
+  //   axios(window.open('https://identity.deso.org/derive?callback=...')
+  //   .then(response => {
+  //     setSetPublicKey(response.accessSignature)
+  //   })
+  //   .catch(error => {
+  //     console.error("Error Fetching data", error);
+  //     setError(error);
+  //   })
+  //   .finally(() => {
+  //     setLoading(false);
+  //   })
+  // }, [])
 
   const handleSignUp = () => {
     return 0;
@@ -46,7 +69,7 @@ const LogIn = () => {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          // onPress={handleLogin}
+          onPress={() => navigation.navigate("DesoLogin")}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Login</Text>
