@@ -6,7 +6,7 @@ export default class DesoLogin extends Component {
     return (
       <WebView
         source={{
-          uri: 'https://identity.deso.org/log-in'
+          uri: 'https://identity.deso.org/derive?callback=auth://derive'
         }}
         style={{ marginTop: 20 }}
       />
