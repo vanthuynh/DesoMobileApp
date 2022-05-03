@@ -38,17 +38,40 @@ import Home from '../screens/Home';
 // }
 
 const DesoLogin = () =>{
-  const [signIn, setSignIn] = useState(false)
   const navigation = useNavigation();
+  // const webView = WebView();
+  const [signIn, setSignIn] = useState(false)
+  const [userProfile, setUserProfile] = useState(null)
+
+  // function onMessage(data) {
+  //   alert(data.nativeEvent.data);
+  // }
+
+  // const handleLogin = (e) => {
+  //   const data = webView.getUrl(e);
+  //   setUserProfile(data)
+  // }
 
   const handleNavigationStateChange = () => {
-    navigation.navigate("Home");
+    navigation.navigate("Home", {userProfile});
   }
+
+  const onNavigationStateChange = e => {
+    if (userProfile!==e.url) {
+      console.log(e.url);
+      setUserProfile(e.url);
+      console.log(userProfile);
+    }
+  };
+
+  // update userProfile and pass on to Home screen
 
   useEffect(() => {
     setSignIn(true);
-    handleNavigationStateChange();
-  },[])
+    if (userProfile) {
+      handleNavigationStateChange();
+    }
+  },[userProfile])
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -56,7 +79,10 @@ const DesoLogin = () =>{
         source={{
           uri: 'https://identity.deso.org/derive?callback=auth://derive'
         }}
-        // onNavigationStateChange={handleNavigationStateChange()}
+        // onMessage={onMessage}s
+        // injectedJavaScript={handleLogin}
+        onNavigationStateChange={onNavigationStateChange}
+        javaScriptEnabled
         style={{ marginTop: 20 }}
       />
     </SafeAreaView>

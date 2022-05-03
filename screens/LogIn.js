@@ -51,6 +51,9 @@ const LogIn = () => {
       style={styles.container}
       behavior="padding"
     >
+      <View style={styles.title}>
+        <Text>Welcome to Deso Express</Text>
+      </View>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -88,6 +91,11 @@ const LogIn = () => {
 export default LogIn;
 
 const styles = StyleSheet.create({
+  title: {
+    backgroundColor: COLORS.red,
+    fontWeight: 'bold',
+    fontSize: 100,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

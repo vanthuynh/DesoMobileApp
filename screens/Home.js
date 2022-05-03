@@ -4,7 +4,8 @@ import { View, SafeAreaView, FlatList } from "react-native";
 import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, NFTData } from "../constants";
 
-const Home = () => {
+const Home = (userProfile) => {
+  console.log(userProfile);
   const [nftData, setNftData] = useState(NFTData);
 
   const handleSearch = (value) => {
