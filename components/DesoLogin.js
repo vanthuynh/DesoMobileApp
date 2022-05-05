@@ -36,7 +36,10 @@ import Home from '../screens/Home';
 //     );
 //   }
 // }
+function parseURLParams(url) {
 
+  return result;
+}
 const DesoLogin = () =>{
   const navigation = useNavigation();
   // const webView = WebView();
@@ -56,20 +59,26 @@ const DesoLogin = () =>{
     navigation.navigate("Home", {userProfile});
   }
 
-  const onNavigationStateChange = e => {
-    if (userProfile!==e.url) {
-      console.log(e.url);
-      setUserProfile(e.url);
-      console.log(userProfile);
+  const onNavigationStateChange = (navigationState : WebViewNavigation) => {
+    if (userProfile!==navigationState.url) {
+      console.log('**********************************************');
+      console.log(navigationState);
+      console.log('**********************************************');
+      setUserProfile(navigationState);
+      // console.log(userProfile);
     }
   };
 
   // update userProfile and pass on to Home screen
-
   useEffect(() => {
     setSignIn(true);
     if (userProfile) {
-      handleNavigationStateChange();
+      // var access_token = new URLSearchParams(userProfile.search).get('derivedSeedHex');
+      console.log('=============================================')
+      // console.log(access_token);
+      console.log(userProfile);
+      console.log('=============================================')
+      // handleNavigationStateChange();
     }
   },[userProfile])
 
@@ -77,7 +86,9 @@ const DesoLogin = () =>{
     <SafeAreaView style={{ flex: 1 }}>
       <WebView
         source={{
+          // uri: 'https://identity.deso.org/derive?callback=auth://derive?webview=true'
           uri: 'https://identity.deso.org/derive?callback=auth://derive'
+          // uri: 'https://identity.deso.org/derive?webview=true'
         }}
         // onMessage={onMessage}s
         // injectedJavaScript={handleLogin}

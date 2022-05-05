@@ -5,7 +5,7 @@ import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, NFTData } from "../constants";
 
 const Home = (userProfile) => {
-  console.log(userProfile);
+  // console.log(userProfile);
   const [nftData, setNftData] = useState(NFTData);
 
   const handleSearch = (value) => {
