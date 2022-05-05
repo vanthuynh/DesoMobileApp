@@ -17,25 +17,6 @@ import Home from '../screens/Home';
 //     // Save token for native requests & move to the next screen
 //   }
 // };
-
-// export default class DesoLogin extends Component {
-//   handleNavigationStateChange() {
-//     useNavigation.navigate("Home");
-//   }
-//   render() {
-//     return (
-//       <SafeAreaView style={{ flex: 1 }}>
-//         <WebView
-//           source={{
-//             uri: 'https://identity.deso.org/derive?callback=auth://derive'
-//           }}
-//           // onNavigationStateChange={handleNavigationStateChange()}
-//           style={{ marginTop: 20 }}
-//         />
-//       </SafeAreaView>
-//     );
-//   }
-// }
 function parseURLParams(url) {
 
   return result;
@@ -46,9 +27,9 @@ const DesoLogin = () =>{
   const [signIn, setSignIn] = useState(false)
   const [userProfile, setUserProfile] = useState(null)
 
-  // function onMessage(data) {
-  //   alert(data.nativeEvent.data);
-  // }
+  function onMessage(data) {
+    alert(data.nativeEvent.data);
+  }
 
   // const handleLogin = (e) => {
   //   const data = webView.getUrl(e);
@@ -60,12 +41,15 @@ const DesoLogin = () =>{
   }
 
   const onNavigationStateChange = (navigationState : WebViewNavigation) => {
-    if (userProfile!==navigationState.url) {
+    const url = navigationState.url;
+
+    // const params = parseURLParams(url);
+
+    if (userProfile!==url) {
       console.log('**********************************************');
-      console.log(navigationState);
+      console.log(url);
       console.log('**********************************************');
-      setUserProfile(navigationState);
-      // console.log(userProfile);
+      setUserProfile(url);
     }
   };
 
@@ -74,10 +58,10 @@ const DesoLogin = () =>{
     setSignIn(true);
     if (userProfile) {
       // var access_token = new URLSearchParams(userProfile.search).get('derivedSeedHex');
-      console.log('=============================================')
+      console.log('+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+')
       // console.log(access_token);
       console.log(userProfile);
-      console.log('=============================================')
+      console.log('+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+')
       // handleNavigationStateChange();
     }
   },[userProfile])
@@ -87,11 +71,12 @@ const DesoLogin = () =>{
       <WebView
         source={{
           // uri: 'https://identity.deso.org/derive?callback=auth://derive?webview=true'
-          uri: 'https://identity.deso.org/derive?callback=auth://derive'
+          uri: 'https://identity.deso.org/derive?callback=...?'
+          // uri: 'https://identity.deso.org/derive?callback=auth://derive'
           // uri: 'https://identity.deso.org/derive?webview=true'
         }}
-        // onMessage={onMessage}s
-        // injectedJavaScript={handleLogin}
+        onMessage={onMessage}
+        injectJavaScript={onNavigationStateChange}
         onNavigationStateChange={onNavigationStateChange}
         javaScriptEnabled
         style={{ marginTop: 20 }}
