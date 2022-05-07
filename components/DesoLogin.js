@@ -31,9 +31,6 @@ const DesoLogin = () =>{
             return prev;
         }, {});
         setUserProfile(obj);
-        console.log('++++++++++++++++++++++++++')
-        console.log(userProfile);
-        console.log('++++++++++++++++++++++++++')
         handleNavigationStateChange();
       } catch(error) {
         console.error(error);

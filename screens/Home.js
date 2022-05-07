@@ -5,9 +5,6 @@ import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, NFTData } from "../constants";
 
 const Home = (userProfile) => {
-  console.log('>>>>>>>----------->>>>>>')
-  console.log(userProfile);
-  console.log('>>>>>>>----------->>>>>>')
   const [userData, setUserData] = useState(userProfile);
   const [nftData, setNftData] = useState(NFTData);
 
