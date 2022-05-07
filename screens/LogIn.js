@@ -20,24 +20,6 @@ const LogIn = () => {
 
   const navigation = useNavigation()
 
-  const handleClick = () => {
-    // const derive = window.open('https://identity.deso.org/derive?callback=...');
-    // set
-  }
-  // useEffect(() => {
-  //   axios(window.open('https://identity.deso.org/derive?callback=...')
-  //   .then(response => {
-  //     setSetPublicKey(response.accessSignature)
-  //   })
-  //   .catch(error => {
-  //     console.error("Error Fetching data", error);
-  //     setError(error);
-  //   })
-  //   .finally(() => {
-  //     setLoading(false);
-  //   })
-  // }, [])
-
   const handleSignUp = () => {
     return 0;
   }

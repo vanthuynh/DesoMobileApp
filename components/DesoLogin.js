@@ -14,7 +14,7 @@ const DesoLogin = () =>{
   const axios = require('axios');
   const navigation = useNavigation();
   const [signIn, setSignIn] = useState(false)
-  const [userProfile, setUserProfile] = useState(null)
+  const [userProfile, setUserProfile] = useState({})
 
   const handleNavigationStateChange = () => {
     navigation.navigate("Home", {userProfile});
@@ -31,7 +31,9 @@ const DesoLogin = () =>{
             return prev;
         }, {});
         setUserProfile(obj);
+        console.log('++++++++++++++++++++++++++')
         console.log(userProfile);
+        console.log('++++++++++++++++++++++++++')
         handleNavigationStateChange();
       } catch(error) {
         console.error(error);
