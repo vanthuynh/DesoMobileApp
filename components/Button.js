@@ -53,3 +53,29 @@ export const RectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
     </TouchableOpacity>
   );
 };
+
+export const LoginButton = ({ minWidth, fontSize, handlePress, ...props }) => {
+  return (
+    <TouchableOpacity
+      style={{
+        backgroundColor: COLORS.primary,
+        padding: SIZES.small,
+        borderRadius: SIZES.extraLarge,
+        minWidth: 150,
+        ...props,
+      }}
+      onPress={handlePress}
+    >
+      <Text
+        style={{
+          fontFamily: FONTS.semiBold,
+          fontSize: fontSize,
+          color: COLORS.white,
+          textAlign: "center",
+        }}
+      >
+        Login
+      </Text>
+    </TouchableOpacity>
+  );
+};
