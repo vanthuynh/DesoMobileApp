@@ -11,7 +11,6 @@ import axios from 'axios';
 //   return result;
 // }
 const DesoLogin = () =>{
-  const axios = require('axios');
   const navigation = useNavigation();
   const [signIn, setSignIn] = useState(false)
   const [userProfile, setUserProfile] = useState({})
@@ -31,6 +30,7 @@ const DesoLogin = () =>{
             return prev;
         }, {});
         setUserProfile(obj);
+        console.log(userProfile);
         handleNavigationStateChange();
       } catch(error) {
         console.error(error);
