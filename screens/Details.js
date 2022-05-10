@@ -50,7 +50,12 @@ const Details = ({ route, navigation }) => {
           zIndex: 1,
         }}
       >
-        <RectButton minWidth={170} fontSize={SIZES.large} {...SHADOWS.dark} />
+        <RectButton 
+          text = "Buy"
+          minWidth={170} 
+          fontSize={SIZES.large} 
+          handlePress={() => navigation.navigate("Buy", { data })}
+          {...SHADOWS.dark} />
       </View>
 
       <FlatList
