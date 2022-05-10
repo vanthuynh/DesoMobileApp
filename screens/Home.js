@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { View, SafeAreaView, FlatList } from "react-native";
-
 import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, NFTData } from "../constants";
 
-const Home = () => {
+// hard code for signing transaction
+import signTransaction from "../components/signTransaction";
+
+const Home = ({route}) => {
+  const { userProfile } = route.params;
+  console.log('========================')
+  console.log(userProfile)
+  console.log('========================')
+  const [userData, setUserData] = useState(userProfile);
   const [nftData, setNftData] = useState(NFTData);
 
   const handleSearch = (value) => {

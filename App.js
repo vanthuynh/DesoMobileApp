@@ -3,8 +3,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 
+import LogIn from "./screens/LogIn";
 import Home from "./screens/Home";
 import Details from "./screens/Details";
+import DesoLogin from "./components/DesoLogin";
 
 const theme = {
   ...DefaultTheme,
@@ -33,10 +35,12 @@ const App = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Home"
+        initialRouteName="LogIn"
       >
+        <Stack.Screen name="LogIn" component={LogIn} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Details" component={Details} />
+        <Stack.Screen name="DesoLogin" component={DesoLogin} />
       </Stack.Navigator>
     </NavigationContainer>
   );
