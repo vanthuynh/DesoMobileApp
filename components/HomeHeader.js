@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-
+import { RectButton, CircleButton, LogInButton } from "./Button";
 import { COLORS, FONTS, SIZES, assets } from "../constants";
 
 
@@ -10,10 +10,10 @@ import { COLORS, FONTS, SIZES, assets } from "../constants";
 
 
 const HomeHeader = ({ onSearch, navigation }) => {
- 
+
   return (
 
-    
+
     <View
       style={{
         backgroundColor: COLORS.primary,
@@ -32,7 +32,12 @@ const HomeHeader = ({ onSearch, navigation }) => {
           resizeMode="contain"
           style={{ width: 90, height: 25 }}
         />
-        <TouchableOpacity onPress={() => 
+        <LogInButton
+            minWidth={120}
+            fontSize={SIZES.font}
+            handlePress={() => navigation.navigate("LogIn", {navigation})}
+          />
+        <TouchableOpacity onPress={() =>
                navigation.navigate('Account') }>
           <View style={{ width: 45, height: 45 }}>
             <Image
@@ -54,7 +59,7 @@ const HomeHeader = ({ onSearch, navigation }) => {
               }}
             />
           </View>
-        </TouchableOpacity>       
+        </TouchableOpacity>
 
       </View>
 

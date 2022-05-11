@@ -10,13 +10,13 @@ import axios from 'axios';
 // function parseURLParams(url) {
 //   return result;
 // }
-const DesoLogin = () =>{
-  const navigation = useNavigation();
+const DesoLogin = ({ navigation }) =>{
+  // const navigation = useNavigation();
   const [signIn, setSignIn] = useState(false)
   const [userProfile, setUserProfile] = useState({})
 
   const handleNavigationStateChange = () => {
-    navigation.navigate("Home", {userProfile});
+    navigation.navigate("HomeStack", {userProfile});
   }
 
   const onNavigationStateChange = async (navigationState) => {

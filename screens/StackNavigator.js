@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import HomeStack from "./Home";
 import Details from "./Details";
 import Account from "./Account"
+import DesoLogin from "../components/DesoLogin";
+import LogIn from "./LogIn";
 
 
 
@@ -13,19 +15,21 @@ import Account from "./Account"
 const Stack = createStackNavigator();
 
 const StackNavigator = () => (
- 
+
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Home"
+        initialRouteName="HomeStack"
       >
         <Stack.Screen name="HomeStack" component={HomeStack} />
+        <Stack.Screen name="LogIn" component={LogIn} />
+        <Stack.Screen name="DesoLogin" component={DesoLogin} />
         <Stack.Screen name="Details" component={Details} />
         <Stack.Screen name="Account" component={Account} />
-      </Stack.Navigator> 
-    
+      </Stack.Navigator>
+
   );
-   
+
 
 export default StackNavigator;

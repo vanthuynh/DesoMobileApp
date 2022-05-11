@@ -10,15 +10,15 @@ import { CircleButton, RectButton, DetailsDesc, DetailsBid, FocusedStatusBar } f
 // import FormInput from "../components/FormInput";
 import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
-const LogIn = () => {
+const LogIn = ({ navigation }) => {
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [publicKey, setSetPublicKey] = useState(null)
-  const [desoIdentity, setDesoIdentity] = useState(null)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [publicKey, setSetPublicKey] = useState(null);
+  const [desoIdentity, setDesoIdentity] = useState(null);
 
-  const navigation = useNavigation()
+  // const navigation = useNavigation();
 
   const handleSignUp = () => {
     return 0;
@@ -54,7 +54,7 @@ const LogIn = () => {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("DesoLogin")}
+          onPress={() => navigation.navigate("DesoLogin", {navigation})}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Login</Text>
