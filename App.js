@@ -7,6 +7,7 @@ import Home from "./screens/Home";
 import Details from "./screens/Details";
 import Login from "./screens/Login";
 import Buy from "./screens/Buy";
+import Listing from "./screens/Listing";
 
 const theme = {
   ...DefaultTheme,
@@ -35,12 +36,13 @@ const App = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Home"
+        initialRouteName="Listing"
       >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Details" component={Details} />
         <Stack.Screen name="Buy" component={Buy} />
+        <Stack.Screen name="Listing" component={Listing} />
 
       </Stack.Navigator>
     </NavigationContainer>
