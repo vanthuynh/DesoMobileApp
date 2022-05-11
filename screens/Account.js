@@ -8,18 +8,9 @@ import {
   TouchableRipple,
 } from 'react-native-paper';
 import { assets } from "../constants";
-import { ShareInfo } from '../components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-const url = "https://awesome.contents.com/";
-const title = "Awesome Contents";
-const message = "Please check this out.";
-const options = {
-  title,
-  url,
-  message,
-};
 
 const Account = ({navigation}) => {
   const share = async () => {
