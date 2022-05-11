@@ -1,12 +1,28 @@
 import React from 'react'
-import { SafeAreaView, Text, View, StyleSheet, StatusBar } from "react-native";
+import { SafeAreaView, Text, View, StyleSheet, StatusBar, TouchableOpacity, TextInput, ImageBackground } from "react-native";
 import {FocusedStatusBar } from "../components";
 import { COLORS, assets } from "../constants";
 import {CircleButton} from "../components/Button";
-
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
+import { Colors, useTheme } from 'react-native-paper';
+import BottomSheet from 'reanimated-bottom-sheet';
+import Animated from 'react-native-reanimated';
 
 const EditProfile = ({navigation}) => {
+
+  const {colors} = useTheme();
+
+  const bs = React.createRef();
+  const fall = new Animated.Value(1);
+
+  
+
+  
+
+  
+
   return (
       <SafeAreaView style={{flex:1}}>
           <FocusedStatusBar backgroundColor={COLORS.primary} />
@@ -22,6 +38,119 @@ const EditProfile = ({navigation}) => {
             />
             
             <Text style={{left: 60, top: StatusBar.currentHeight + 9}}>Back</Text>
+
+
+            <View style={styles.container}>
+              
+
+            
+              <View style={{margin: 20}}>
+                <View style={{alignItems: 'center'}}>
+                  <TouchableOpacity onPress={() => {}}>
+                    <View style={{
+                      height: 100,
+                      width: 100,
+                      borderRadius: 15,
+                      justifyContent: 'center',
+                      alignContent: 'center'
+                    }}>
+                      <ImageBackground
+                        source={assets.person01}
+                        style={{height: 100, width: 100}}
+                        imageStyle={{borderRadius: 15}}
+                      >
+                        <View style={{
+                          flex: 1,
+                          justifyContent: 'center',
+                          alignItems: 'center'
+                        }}>
+                          <Icon name='camera' size ={35} color="#fff" style={{
+                            opacity: 0.7,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderWidth: 1,
+                            borderColor: '#fff',
+                            borderRadius: 10,
+                          }}/>
+                        </View>
+
+                      </ImageBackground>
+                    </View>
+                  </TouchableOpacity>
+
+                  <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
+                    Team 6
+                  </Text>
+
+                  <View style={styles.action}>
+                    <FontAwesome name="user-o" color={Colors.text} size={20} style={{top: -5}}/>
+                    <TextInput
+                      placeholder='First Name'
+                      placeholderTextColor='#666666'
+                      autoCorrect={false}
+                      style={[styles.textInput, {color: colors.text}]}
+                    />
+                  </View>
+
+                  <View style={styles.action}>
+                    <FontAwesome name="user-o" color={Colors.text} size={20} style={{top: -5}}/>
+                    <TextInput
+                      placeholder='Last Name'
+                      placeholderTextColor='#666666'
+                      autoCorrect={false}
+                      style={[styles.textInput, {color: colors.text}]}
+                    />
+                  </View>
+
+                  <View style={styles.action}>
+                    <Feather name="phone" color={Colors.text} size={20} style={{top: -5}}/>
+                    <TextInput
+                      placeholder='Phone'
+                      keyboardType='number-pad'
+                      placeholderTextColor='#666666'
+                      autoCorrect={false}
+                      style={[styles.textInput, {color: colors.text}]}
+                    />
+                  </View>
+
+                  <View style={styles.action}>
+                    <FontAwesome name="envelope-o" color={Colors.text} size={20} style={{top: -5}}/>
+                    <TextInput
+                      placeholder='Email'
+                      keyboardType='email-address'
+                      placeholderTextColor='#666666'
+                      autoCorrect={false}
+                      style={[styles.textInput, {color: colors.text}]}
+                    />
+                  </View>
+
+                  <View style={styles.action}>
+                    <FontAwesome name="globe" color={Colors.text} size={20} style={{top: -5}}/>
+                    <TextInput
+                      placeholder='Country'
+                      placeholderTextColor='#666666'
+                      autoCorrect={false}
+                      style={[styles.textInput, {color: colors.text}]}
+                    />
+                  </View>
+
+                  <View style={styles.action}>
+                    <Icon name="map-marker-radius" color={Colors.text} size={20} style={{top: -5}}/>
+                    <TextInput
+                      placeholder='City'
+                      placeholderTextColor='#666666'
+                      autoCorrect={false}
+                      style={[styles.textInput, {color: colors.text}]}
+                    />
+                  </View>
+
+                  <TouchableOpacity style={styles.commandButton} onPress={() => {}}>
+                    <Text style={styles.panelButtonTitle}>Submit</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+
           </View>
 
           
@@ -112,3 +241,5 @@ const styles = StyleSheet.create({
   });
 
 export default EditProfile;
+
+
