@@ -22,15 +22,17 @@ const options = {
 };
 
 const Account = ({navigation}) => {
-  const onShare = async () => {
+  const share = async () => {
     try {
       const result = await Share.share({
         message:
-          'Buy and Sell your NFT with Deso today!',
+          'Buy and Sell your NFT with Deso today! https://deso-nuts.netlify.app/',
+          title: "NFT-Deso",
+          url:  "https://deso-nuts.netlify.app//",
+
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
-          // shared with activity type of result.activityType
         } else {
           // shared
         }
@@ -114,7 +116,7 @@ const Account = ({navigation}) => {
             <Text style={styles.menuItemText}>Payment</Text>
           </View>
         </TouchableRipple>
-        <TouchableRipple onPress={onShare}>
+        <TouchableRipple onPress={share}>
           <View style={styles.menuItem}>
             <Icon name="share-outline" color="#FF6347" size={25}/>
             <Text style={styles.menuItemText}>Tell Your Friends</Text>
