@@ -8,6 +8,7 @@ import Details from "./Details";
 import Account from "./Account"
 import DesoLogin from "../components/DesoLogin";
 import LogIn from "./LogIn";
+import Buy from './Buy'
 
 
 
@@ -27,6 +28,7 @@ const StackNavigator = () => (
         <Stack.Screen name="DesoLogin" component={DesoLogin} />
         <Stack.Screen name="Details" component={Details} />
         <Stack.Screen name="Account" component={Account} />
+        <Stack.Screen name="Buy" component={Buy} />
       </Stack.Navigator>
 
   );
