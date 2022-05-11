@@ -23,25 +23,25 @@ function MyTabs({navigation}) {
         tabBarActiveTintColor:COLORS.primary,
         tabBarHideOnKeyboard: true,
         tabBarShowLabel:false,
-        
+
       }}
       initialRouteName="Home"
      >
-      <Tab.Screen name="Home" component={StackNavigator} 
+      <Tab.Screen name="Home" component={StackNavigator}
         options={{ tabBarIcon : ({color, size}) =>
         <HomeIcon name ="home" color={color} size={size}/> }}
       />
 
-      <Tab.Screen 
-        name="NewList" 
-        component={NewListing} 
-        options={{ 
+      <Tab.Screen
+        name="NewList"
+        component={NewListing}
+        options={{
           tabBarIcon : ({color, size}) => (
         <Icons name ="plus-circle" color={color} size={size}/>)
          }}
-         
+
       />
-      <Tab.Screen name="List"  component={Listing} 
+      <Tab.Screen name="List"  component={Listing}
         options={{ tabBarIcon : ({color, size}) =>
          <Icons name ="tag" color={color} size={size}/> }}
       />

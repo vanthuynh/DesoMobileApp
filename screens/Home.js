@@ -5,7 +5,15 @@ import {NavigationActions} from 'react-navigation';
 import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, NFTData } from "../constants";
 
-const Home = ({navigation}) => {
+// hard code for signing transaction
+import signTransaction from "../components/signTransaction";
+
+const Home = ({route, navigator}) => {
+  const { userProfile } = route.params;
+  console.log('========================')
+  console.log(userProfile)
+  console.log('========================')
+  const [userData, setUserData] = useState(userProfile);
   const [nftData, setNftData] = useState(NFTData);
 
   const handleSearch = (value) => {
