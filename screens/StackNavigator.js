@@ -11,7 +11,7 @@ import LogIn from "./LogIn";
 import Buy from './Buy'
 import EditProfile from './EditProfile'
 import Scan from './Scan'
-
+import Listing from "./Listing";
 
 
 
@@ -28,6 +28,7 @@ const StackNavigator = () => (
         <Stack.Screen name="HomeStack" component={HomeStack} />
         <Stack.Screen name="LogIn" component={LogIn} />
         <Stack.Screen name="DesoLogin" component={DesoLogin} />
+        <Stack.Screen name="Listing" component={Listing} />
         <Stack.Screen name="Details" component={Details} />
         <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Buy" component={Buy} />

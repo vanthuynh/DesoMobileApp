@@ -8,17 +8,12 @@ import { COLORS, NFTData } from "../constants";
 // hard code for signing transaction
 import signTransaction from "../components/signTransaction";
 
-const Home = ({route, navigation}) => {
+const Home = ({navigation}) => {
   // console.log('========================')
   // console.log('========================')
   const [userData, setUserData] = useState('');
-  const [userProfile, setUserProfile] = useState({});
+  // const [userProfile, setUserProfile] = useState({});
   const [nftData, setNftData] = useState(NFTData);
-  if (route.params) {
-    const userProfile = route.params;
-    console.log(userProfile);
-    setUserData(userProfile);
-  }
 
   const handleSearch = (value) => {
     if (value.length === 0) {

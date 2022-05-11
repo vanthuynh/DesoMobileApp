@@ -71,7 +71,7 @@ const HomeHeader = ({ onSearch, navigation }) => {
             color: COLORS.white,
           }}
         >
-          Hello Victoria 👋
+          Hello Aspiring Entrepreneurs 👋
         </Text>
 
         <Text
@@ -82,7 +82,7 @@ const HomeHeader = ({ onSearch, navigation }) => {
             marginTop: SIZES.base / 2,
           }}
         >
-          Let’s find masterpiece Art
+          Let's get rich!
         </Text>
       </View>
 
