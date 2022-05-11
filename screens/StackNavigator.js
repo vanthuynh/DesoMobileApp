@@ -9,6 +9,7 @@ import Account from "./Account"
 import DesoLogin from "../components/DesoLogin";
 import LogIn from "./LogIn";
 import Buy from './Buy'
+import EditProfile from './EditProfile'
 
 
 
@@ -29,6 +30,7 @@ const StackNavigator = () => (
         <Stack.Screen name="Details" component={Details} />
         <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Buy" component={Buy} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
       </Stack.Navigator>
 
   );
