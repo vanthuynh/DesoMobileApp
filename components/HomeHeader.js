@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import { RectButton, CircleButton, LogInButton } from "./Button";
+import { RectButton, CircleButton, LoginButton } from "./Button";
 import { COLORS, FONTS, SIZES, assets } from "../constants";
 
 
@@ -32,7 +32,7 @@ const HomeHeader = ({ onSearch, navigation }) => {
           resizeMode="contain"
           style={{ width: 90, height: 25 }}
         />
-        <LogInButton
+        <LoginButton
             minWidth={120}
             fontSize={SIZES.font}
             handlePress={() => navigation.navigate("LogIn", {navigation})}

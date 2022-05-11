@@ -50,7 +50,7 @@ const Details = ({ route, navigation }) => {
           zIndex: 1,
         }}
       >
-        <RectButton minWidth={170} fontSize={SIZES.large} {...SHADOWS.dark} />
+        <RectButton minWidth={170} fontSize={SIZES.large} text='Buy This NFT'{...SHADOWS.dark} />
       </View>
 
       <FlatList

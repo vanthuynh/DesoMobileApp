@@ -28,7 +28,7 @@ export const CircleButton = ({ imgUrl, handlePress, ...props }) => {
   );
 };
 
-export const RectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
+export const RectButton = ({text, minWidth, fontSize, handlePress, ...props }) => {
   return (
     <TouchableOpacity
       style={{
@@ -48,19 +48,20 @@ export const RectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
           textAlign: "center",
         }}
       >
-        Place a bid
+        {text}
       </Text>
     </TouchableOpacity>
   );
 };
-export const LogInButton = ({ minWidth, fontSize, handlePress, ...props }) => {
+
+export const LoginButton = ({ minWidth, fontSize, handlePress, ...props }) => {
   return (
     <TouchableOpacity
       style={{
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.primary,
         padding: SIZES.small,
         borderRadius: SIZES.extraLarge,
-        minWidth: minWidth,
+        minWidth: 150,
         ...props,
       }}
       onPress={handlePress}
@@ -69,11 +70,11 @@ export const LogInButton = ({ minWidth, fontSize, handlePress, ...props }) => {
         style={{
           fontFamily: FONTS.semiBold,
           fontSize: fontSize,
-          color: COLORS.third,
+          color: COLORS.white,
           textAlign: "center",
         }}
       >
-        SignIn
+        Login
       </Text>
     </TouchableOpacity>
   );
