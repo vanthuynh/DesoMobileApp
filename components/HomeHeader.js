@@ -16,7 +16,7 @@ const HomeHeader = ({ onSearch, navigation }) => {
 
     <View
       style={{
-        backgroundColor: COLORS.primary,
+        backgroundColor: COLORS.dark_primary,
         padding: SIZES.font,
       }}
     >
