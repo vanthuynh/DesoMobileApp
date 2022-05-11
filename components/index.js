@@ -6,6 +6,7 @@ import DetailsBid from "./DetailsBid";
 import FocusedStatusBar from "./FocusedStatusBar";
 import DetailsDesc from './DetailsDesc';
 
+
 export {
   HomeHeader,
   NFTCard,
@@ -19,4 +20,5 @@ export {
   DetailsBid,
   FocusedStatusBar,
   DetailsDesc,
+ 
 };

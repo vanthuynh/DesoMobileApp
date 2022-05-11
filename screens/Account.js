@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, SafeAreaView , StyleSheet} from "react-native";
+import { View, SafeAreaView , StyleSheet, Share} from "react-native";
 import {
   Avatar,
   Title,
@@ -8,9 +8,39 @@ import {
   TouchableRipple,
 } from 'react-native-paper';
 import { assets } from "../constants";
+import { ShareInfo } from '../components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
+const url = "https://awesome.contents.com/";
+const title = "Awesome Contents";
+const message = "Please check this out.";
+const options = {
+  title,
+  url,
+  message,
+};
+
 const Account = ({navigation}) => {
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'Buy and Sell your NFT with Deso today!',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userInfoSection}>
@@ -84,7 +114,7 @@ const Account = ({navigation}) => {
             <Text style={styles.menuItemText}>Payment</Text>
           </View>
         </TouchableRipple>
-        <TouchableRipple onPress={() => {}}>
+        <TouchableRipple onPress={onShare}>
           <View style={styles.menuItem}>
             <Icon name="share-outline" color="#FF6347" size={25}/>
             <Text style={styles.menuItemText}>Tell Your Friends</Text>
