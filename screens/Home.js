@@ -9,8 +9,6 @@ import { COLORS, NFTData } from "../constants";
 import signTransaction from "../components/signTransaction";
 
 const Home = ({navigation}) => {
-  // console.log('========================')
-  // console.log('========================')
   const [userData, setUserData] = useState('');
   // const [userProfile, setUserProfile] = useState({});
   const [nftData, setNftData] = useState(NFTData);
