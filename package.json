@@ -35,7 +35,8 @@
     "react-native-webview": "11.15.0",
     "react-navigation": "^4.4.4",
     "secp256k1": "^4.0.3",
-    "sha256": "^0.2.0"
+    "sha256": "^0.2.0",
+    "expo-camera": "~12.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
