@@ -4,7 +4,7 @@ import { WebView, WebViewNavigation } from 'react-native-webview';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 
-import Home from '../screens/Home';
+import Listing from '../screens/Listing';
 import axios from 'axios';
 
 // function parseURLParams(url) {
@@ -16,7 +16,7 @@ const DesoLogin = ({ navigation }) =>{
   const [userProfile, setUserProfile] = useState({})
 
   const handleNavigationStateChange = () => {
-    navigation.navigate("HomeStack", {userProfile});
+    navigation.navigate("Listing", {userProfile});
   }
 
   const onNavigationStateChange = async (navigationState) => {
