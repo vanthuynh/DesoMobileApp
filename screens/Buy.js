@@ -14,7 +14,6 @@ const Buy = ({navigation}) => {
   return (
       <SafeAreaView style={{flex:1}}>
           <FocusedStatusBar backgroundColor={COLORS.primary} />
-          
           <View style={{
             paddingTop:25,
             paddingBottom:25
@@ -27,7 +26,7 @@ const Buy = ({navigation}) => {
               zIndex={1}
             />
             <Text style={{
-              textAlign:"center", 
+              textAlign:"center",
               fontSize:40,
             }}>
               Enter Amount
@@ -39,7 +38,6 @@ const Buy = ({navigation}) => {
             paddingLeft: 30,
             paddingRight: 30
           }}>
-            
             <TextInput
                 style={{
                   height:80,
@@ -50,14 +48,13 @@ const Buy = ({navigation}) => {
                 placeholder="0.00"
                 onChangeText={onChangeNumber}
                 value={number}
-                keyboardType="numeric"              
+                keyboardType="numeric"
             />
-            {/* <Picker 
+            {/* <Picker
                 selectedValue={selectedValue}
                 style={{height: 100,width: 100}}
                 mode={"dropdown"}
                 onValueChange={(itemValue) => setSelectedValue(itemValue)}
-                
             >
                 <Picker.Item label="USD" value="usd" />
                 <Picker.Item label="Deso" value="deso" />
@@ -73,16 +70,15 @@ const Buy = ({navigation}) => {
                 text="Confirm"
                 minWidth={50}
                 fontSize={25}
-                borderRadius={10}   
+                borderRadius={10}
             />
           </View>
-          
+
           <View style={{
             paddingTop: 30,
             paddingLeft: 25,
             paddingRight: 25,
             paddingBottom: 20,
-            
           }}>
             <Text style={{
               position: 'absolute',
@@ -110,23 +106,22 @@ const Buy = ({navigation}) => {
               right: 20,
               top: 130
             }}>
-              <Picker 
+              <Picker
                   selectedValue={selectedValue}
                   style={{height: 100,width: 100}}
                   mode={"dropdown"}
                   onValueChange={(itemValue) => setSelectedValue(itemValue)}
                   textAlign={'right'}
-                  
               >
                   <Picker.Item label="USD" value="usd" />
                   <Picker.Item label="Deso" value="deso" />
               </Picker>
             </Text>
 
-            
+
           </View>
-          
-          
+
+
       </SafeAreaView>
   )
 }

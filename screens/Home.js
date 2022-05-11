@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import { View, SafeAreaView, FlatList } from "react-native";
+import {NavigationActions} from 'react-navigation';
 
 import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, NFTData } from "../constants";
 
-const Home = () => {
+// hard code for signing transaction
+import signTransaction from "../components/signTransaction";
+
+const Home = ({route, navigation}) => {
+  // console.log('========================')
+  // console.log('========================')
+  const [userData, setUserData] = useState('');
+  const [userProfile, setUserProfile] = useState({});
   const [nftData, setNftData] = useState(NFTData);
+  if (route.params) {
+    const userProfile = route.params;
+    console.log(userProfile);
+    setUserData(userProfile);
+  }
 
   const handleSearch = (value) => {
     if (value.length === 0) {
@@ -25,7 +38,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <FocusedStatusBar backgroundColor={COLORS.primary} />
+      <FocusedStatusBar backgroundColor={COLORS.dark_primary} />
       <View style={{ flex: 1 }}>
         <View style={{ zIndex: 0 }}>
           <FlatList
@@ -33,7 +46,7 @@ const Home = () => {
             renderItem={({ item }) => <NFTCard data={item} />}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
-            ListHeaderComponent={<HomeHeader onSearch={handleSearch} />}
+            ListHeaderComponent={<HomeHeader navigation={navigation} onSearch={handleSearch} />}
           />
         </View>
 
@@ -48,7 +61,7 @@ const Home = () => {
           }}
         >
           <View
-            style={{ height: 300, backgroundColor: COLORS.primary }} />
+            style={{ height: 300, backgroundColor: COLORS.dark_primary }} />
           <View style={{ flex: 1, backgroundColor: COLORS.white }} />
         </View>
       </View>

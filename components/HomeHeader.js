@@ -1,13 +1,22 @@
 import React from "react";
 import { View, Text, Image, TextInput } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
+import { RectButton, CircleButton, LoginButton } from "./Button";
 import { COLORS, FONTS, SIZES, assets } from "../constants";
 
-const HomeHeader = ({ onSearch }) => {
+
+
+
+
+const HomeHeader = ({ onSearch, navigation }) => {
+
   return (
+
+
     <View
       style={{
-        backgroundColor: COLORS.primary,
+        backgroundColor: COLORS.dark_primary,
         padding: SIZES.font,
       }}
     >
@@ -23,25 +32,35 @@ const HomeHeader = ({ onSearch }) => {
           resizeMode="contain"
           style={{ width: 90, height: 25 }}
         />
+        <LoginButton
+            minWidth={120}
+            fontSize={SIZES.font}
+            handlePress={() => navigation.navigate("LogIn", {navigation})}
+          />
+        <TouchableOpacity onPress={() =>
+               navigation.navigate('Account') }>
+          <View style={{ width: 45, height: 45 }}>
+            <Image
+              source={assets.person01}
+              resizeMode="contain"
+              style={{ width: "100%", height: "100%" }}
+            />
 
-        <View style={{ width: 45, height: 45 }}>
-          <Image
-            source={assets.person01}
-            resizeMode="contain"
-            style={{ width: "100%", height: "100%" }}
-          />
-          <Image
-            source={assets.badge}
-            resizeMode="contain"
-            style={{
-              position: "absolute",
-              width: 15,
-              height: 15,
-              bottom: 0,
-              right: 0,
-            }}
-          />
-        </View>
+
+            <Image
+              source={assets.badge}
+              resizeMode="contain"
+              style={{
+                position: "absolute",
+                width: 15,
+                height: 15,
+                bottom: 0,
+                right: 0,
+              }}
+            />
+          </View>
+        </TouchableOpacity>
+
       </View>
 
       <View style={{ marginVertical: SIZES.font }}>
