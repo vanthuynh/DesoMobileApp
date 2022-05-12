@@ -1,19 +1,46 @@
-import React , {Component} from 'react'
-import { SafeAreaView, Text, StyleSheet, View, TextInput, Keyboard, TouchableWithoutFeedback} from "react-native";
+import React , {useState} from 'react'
+import { SafeAreaView, Text, StyleSheet, View, TextInput, Keyboard, TouchableWithoutFeedback, ScrollView, TouchableOpacity} from "react-native";
 import { RectButton } from '../components';
 import { SIZES } from '../constants';
 import {FocusedStatusBar } from "../components";
 import { COLORS} from "../constants";
 import ActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/Ionicons'
-
+import SliderDemo from '../components/SliderDemo';
 
 
 
 const NewListing = () => {
+  const [post, setPost] = useState({});
+  const handleSubmit = async (listing, { resetForm }) => {
+    setProgress(0);
+    setUploadVisible(true);
+    const result = await listingsApi.addListing(
+      { ...listing, location },
+      (progress) => setProgress(progress)
+    );
+
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert("Could not save the listing");
+    }
+
+    resetForm();
+  };
   return (
       <SafeAreaView style={{flex:1,justifyContent: "center",alignItems: "center"}}>
           <FocusedStatusBar backgroundColor={COLORS.primary} />
+          <View style={styles.container}>
+            <View>
+              <Text style={styles.header}>Settings</Text>
+            </View>
+          </View>
+          <View style={styles.inputContainer}>
+            <TouchableOpacity style={styles.saveButton} onPress={handleSubmit}>
+              <Text style={styles.saveButtonText}>Submit Post</Text>
+            </TouchableOpacity>
+          </View>
+          <SliderDemo />
           <View >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
               <View style={{
@@ -54,6 +81,7 @@ const NewListing = () => {
               </ActionButton.Item>
             </ActionButton>
           </View>
+
       </SafeAreaView>
   )
 }
@@ -64,6 +92,42 @@ const styles = StyleSheet.create({
     height: 22,
     color: 'white',
   },
+  saveButton: {
+    borderWidth: 1,
+    borderColor: '#007BFF',
+    // backgroundColor: '#007BFF',
+    backgroundColor: COLORS.primary,
+    padding: 15,
+    margin: 5
+  },
+  saveButtonText: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    textAlign: 'center'
+  },
+  inputContainer: {
+    paddingTop: 15
+  },
+  textInput: {
+    borderColor: '#CCCCCC',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    height: 50,
+    fontSize: 25,
+    paddingLeft: 20,
+    paddingRight: 20
+  },
+  container: {
+    flex: 1,
+    paddingTop: 45,
+    backgroundColor: '#F5FCFF',
+  },
+  header: {
+    fontSize: 25,
+    textAlign: 'center',
+    margin: 10,
+    fontWeight: 'bold'
+  }
 });
 
 export default NewListing;
