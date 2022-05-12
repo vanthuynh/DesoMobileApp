@@ -6,7 +6,8 @@ import {FocusedStatusBar } from "../components";
 import { COLORS} from "../constants";
 import ActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/Ionicons'
-import SliderDemo from '../components/SliderDemo';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 
 
@@ -62,7 +63,15 @@ const NewListing = () => {
               fontSize={SIZES.font}
               handlePress={() => navigation.navigate("LogIn", {navigation})}
             /> */}
-            <ActionButton buttonColor="rgba(231,76,60,1)">
+            <View>
+              <RectButton
+                  text="Confirm"
+                  minWidth={50}
+                  fontSize={25}
+                  borderRadius={10}
+              />
+            </View>
+            <ActionButton buttonColor="rgba(231,76,60,1)" style={{bottom:50}}>
               <ActionButton.Item buttonColor='#9b59b6' title="Take Photo" onPress={() => console.log("Take photo button tapped!")}>
                 <Icon name="camera-outline" style={styles.actionButtonIcon} />
               </ActionButton.Item>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, SafeAreaView , StyleSheet, Share} from "react-native";
 import {
   Avatar,

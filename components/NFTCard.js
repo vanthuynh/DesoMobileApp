@@ -5,6 +5,7 @@ import { View, Image } from "react-native";
 import { COLORS, SIZES, SHADOWS, assets } from "../constants";
 import { SubInfo, EthPrice, NFTTitle } from "./SubInfo";
 import { RectButton, CircleButton } from "./Button";
+ 
 
 const NFTCard = ({ data }) => {
   const navigation = useNavigation();
@@ -26,7 +27,7 @@ const NFTCard = ({ data }) => {
         }}
       >
         <Image
-          source={data.image}
+          source={{uri:data.image}}
           resizeMode="cover"
           style={{
             width: "100%",

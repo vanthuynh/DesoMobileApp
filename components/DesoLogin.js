@@ -17,7 +17,9 @@ const DesoLogin = ({ navigation }) =>{
 
   const handleNavigationStateChange = () => {
     navigation.navigate("Listing", {userProfile});
-  }
+  };
+
+  
 
   const onNavigationStateChange = async (navigationState) => {
     const { url } = navigationState;
