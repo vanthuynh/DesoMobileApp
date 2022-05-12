@@ -1,3 +1,4 @@
+
 const sha256 = require('sha256');
 const EC = require('elliptic').ec;
 const ec = new EC("secp256k1");
@@ -10,16 +11,17 @@ const api = "https://node.deso.org";
 const apiAuthorize = "/api/v0/authorize-derived-key";
 const apiSubmit = "/api/v0/submit-transaction";
 
+
 /*
  Payload from DeSo Identity after using the /derive window API endpoint
  */
 
-// Access signature is a certificate signed by the master public key
-const accessSignature = "3046022100935167b22ad5b6446092dfbb63321c31978daa89d86593881fae6fc3e4b5d68502210087bcc2befe4ebd9ce4da9c21408fd107946d91551475eb3185500f5791173ca7";
+// Access signature is a certificate signed by the master public key3044022030e9dfa8915850d7a5656c56825ed94d31d5b1d3a87e048e878d7a8d62209153022049ac7
+const accessSignature = "fbf25da9f7bb8bff25d0969c5a426eb4921cf588980ea883ce1946a4957";
 // Private key of the derived key
-const derivedSeedHex = "5eb9b474328b63d463c7d5f815166c39c7e89cfad3e6431445e2364b106676a7";
+const derivedSeedHex = "7af101c568ddd395086225fac9acf232338d4aa12c94ff984e007b45458cb63a";
 // Public key of the derived key
-const derivedPublicKey = "BC1YLftDyYbG63yCy2MaZ9cMPpyCPxp74GyC2VsYYLc363HQG1xryFx";
+const derivedPublicKey = "BC1YLim4Ym534Nojd7CHYTPRBVM4GcFtyQqHKTHXDpBFpHYVG1L88aq";
 // Master public key
 const publicKey = "BC1YLjL7iWeo7gGmyc9PCevqUF7AUdpSY7mJgz6V1uTJQLmpNRPBtWJ";
 // When the derived key expires
@@ -54,6 +56,8 @@ async function authorizeDerivedKey() {
     res = await axios.post(api + apiSubmit, payload)
     console.log(res);
 }
+
+
 
 /*
  Helper functions

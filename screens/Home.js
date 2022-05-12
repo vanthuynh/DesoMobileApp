@@ -42,7 +42,7 @@ const Home = ({navigation}) => {
   };
   const getNFTData = () => {
     setIsLoading(true);
-    axios.get(`http://192.168.12.194:5000/api/marketplace`)
+    axios.get(`http://192.168.1.21:5000/api/marketplace`)
       .then(response => {
         if(response.data !== userData) {
           console.log('data change');
