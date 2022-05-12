@@ -24,23 +24,6 @@ query = Query()
 ''' Helper methods '''
 def is_empty(result):
     return True if len(result)==0 else False
-def is_correct_coordinates_format(obj):
-    if not is_empty(obj):
-        # lat = -90 to 90
-        # lng = -180 to 180
-        if (isinstance(obj["lat"], float)) or (isinstance(obj["lat"], int)):
-            if not (-90 <= obj["lat"] <= 90):
-                raise Exception("ERROR: Latitude not valid")
-        else:
-            raise Exception("ERROR: Latitude not a float")
-
-        if isinstance(obj["lng"], float) or isinstance(obj["lng"], int):
-            if not (-180 <= obj["lng"] <= 180):
-                raise Exception("ERROR: Longitude not valid")
-        else:
-            raise Exception("ERROR: Longitude not a float")
-        return True
-    return False
 
 ''' USE CASES
 - Listing
@@ -122,10 +105,6 @@ def get_user(user_id):
     if request.method == 'GET':
         result=UserTable.search(query.publicKeyBase58Check == user_id)
     return jsonify({}) if is_empty(result) else jsonify(result[0])
-
-user_id = 'BC1YLiYiVPqLNv4mM6wTe2NyfkdRZNoS7yzJxH4wYFV5uQfj8tysz9k'
-result=UserTable.search(query.publicKeyBase58Check == user_id)
-print(result[0])
 
 
 ####### Uncommend to completely remove all tables and run again
