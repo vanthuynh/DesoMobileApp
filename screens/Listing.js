@@ -23,7 +23,7 @@ const Listing = () => {
         <Image style={styles.itemImageStyle} source={{ uri: item.picture.large }} />
         <View style={styles.contentWrapperStyle}>
           <Text style={styles.txtNameStyle}>{`${item.name.title} ${item.name.first} ${item.name.last}`}</Text>
-          <Text style={styles.txtEmailStyle}> 
+          <Text style={styles.txtEmailStyle}>
           Post's text is placed here {"\n"}
           Post's text is placed here {"\n"}
           Post's text is placed here {"\n"}
@@ -34,11 +34,11 @@ const Listing = () => {
           Post's text is placed here {"\n"}
           </Text>
           <View style={styles.postButtons}>
-        
+
             <TouchableOpacity style ={styles.button} onPress={() => Alert.alert('Like Button pressed')}>
               <Icon name="cards-heart" size={20}></Icon>
             </TouchableOpacity>
-          
+
             <TouchableOpacity style ={{borderLeftWidth: 1, borderRightWidth: 1, paddingLeft: 35, paddingRight: 35}} onPress={() => Alert.alert('Like Button pressed')}>
               <Icon name="card-text" size={20}></Icon>
             </TouchableOpacity>
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     alignContent:"space-between",
     flex: 1,
     flexWrap:"wrap",
-    
+
   },
   button:{
     width: 100,
