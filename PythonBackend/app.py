@@ -49,7 +49,7 @@ def is_correct_coordinates_format(obj):
 - wallet + user profile
 - Buying/Purchase
 - MintNFT
-    
+
 '''
 
 ''' ENDPOINTS:
@@ -62,8 +62,8 @@ def is_correct_coordinates_format(obj):
     * Bonuses *
     - GET - user info (Account Screen) - return an objects with all info of the user
     - POST - user info (Account Screen) - then update accordingly
-    - Update - user info (Account Screen) - 
-    - 
+    - Update - user info (Account Screen) -
+    -
 
 '''
 @app.route("/")
@@ -101,6 +101,31 @@ def remove_marketplace():
     MarketplaceTable.truncate()
     return "DELETE SUCCESS"
 
+@app.route('/api/user', methods=['POST'])
+def post_user():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        userData = request.get_json(force=True)
+        search_user = UserTable.get(query.publicKeyBase58Check == userData['publicKeyBase58Check'])
+        if search_user == None:
+            UserTable.insert(userData)
+        else:
+            UserTable.upsert(userData, query.publicKeyBase58Check == userData['publicKeyBase58Check'])
+        response_object['message'] = 'data added!'
+    return jsonify(response_object)
+
+
+@app.route('/api/user/<user_id>', methods=['GET'])
+def get_user(user_id):
+    '''if user_id exist use'''
+    result={}
+    if request.method == 'GET':
+        result=UserTable.search(query.publicKeyBase58Check == user_id)
+    return jsonify({}) if is_empty(result) else jsonify(result[0])
+
+user_id = 'BC1YLiYiVPqLNv4mM6wTe2NyfkdRZNoS7yzJxH4wYFV5uQfj8tysz9k'
+result=UserTable.search(query.publicKeyBase58Check == user_id)
+print(result[0])
 
 
 ####### Uncommend to completely remove all tables and run again
