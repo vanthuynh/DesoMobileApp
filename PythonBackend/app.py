@@ -10,20 +10,18 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 # create db.json file for storing geofence data
-db = TinyDB('geoDB.json')
+db = TinyDB('DesoDB.json')
 
 # create tables with specific name and initialize them
-MACTable = db.table('MAC')
-ERUTable = db.table('ERU')
-MEATable = db.table('MEA')
-dropCoordinatesTable = db.table('drop_coordinates')
-evacuationCoordinatesTable = db.table('evacuation_coordinates')
-searchAreaTable = db.table('search_area_coordinates')
-homeLocationTable = db.table('home_coordinates')
+MarketplaceTable = db.table('Marketplace')
+UserTable = db.table('Users')
+ListingTable = db.table('Listings')
 
 # create an instance of Query class that can help us search the database
 query = Query()
 
+
+''' Helper methods '''
 def is_empty(result):
     return True if len(result)==0 else False
 def is_correct_coordinates_format(obj):
@@ -43,144 +41,72 @@ def is_correct_coordinates_format(obj):
             raise Exception("ERROR: Longitude not a float")
         return True
     return False
+
+''' USE CASES
+- Listing
+- Submit Post / create NFT / may include upload file
+- networking b/w users
+- wallet + user profile
+- Buying/Purchase
+- MintNFT
+    
 '''
-SUBMIT ALL: clear all data and add new submitted data
-DELETE ALL: clear all data and leave it be
+
+''' ENDPOINTS:
+    *** Priorities ***
+    - GET - MarketplaceTable (for Home.js) - return an array of marketplace objects ---> map it out
+    - POST - MarketplaceTable (for NewListing.js) - submit an object ---> append to the array of marketplace
+    - GET - ListingTable (for Listing.js) - return an array of all NFT objects that that has same USER-ID
+    - POST - ListingTable (for Buy.js) - user buy an item ---> object append onto ListingTable with specific USER-ID
+
+    * Bonuses *
+    - GET - user info (Account Screen) - return an objects with all info of the user
+    - POST - user info (Account Screen) - then update accordingly
+    - Update - user info (Account Screen) - 
+    - 
+
 '''
-@app.route('/postGeofence/<vehicle_name>', methods=['POST'])
-def submit_geofence(vehicle_name):
+@app.route("/")
+def test():
+    print('Backend Database is running')
+    return "Hello, this is Deso Simple Backend Database"
+
+
+@app.route('/api/marketplace', methods=['POST'])
+def post_marketplace():
     response_object = {'status': 'success'}
     if request.method == 'POST':
-        geoData = request.get_json(force=True)
-        if vehicle_name == 'MAC':
-            MACTable.truncate()
-            MACTable.insert(geoData)
-        elif vehicle_name == 'ERU':
-            ERUTable.truncate()
-            ERUTable.insert(geoData)
-        elif vehicle_name == 'MEA':
-            MEATable.truncate()
-            MEATable.insert(geoData)
+        nftPost = request.get_json(force=True)
+        # MarketplaceTable.truncate()
+        # MarketplaceTable.insert(nftPost)
+        ''' MarketplaceTable is empty --> insert the whole thing'''
+        cur = MarketplaceTable.all()
+        if is_empty(cur):
+            MarketplaceTable.insert(nftPost)
+        else:
+            print(cur[0]['marketplace'])
+            cur[0]['marketplace'].append(nftPost)
+            MarketplaceTable.truncate()
+            MarketplaceTable.insert(cur[0])
         response_object['message'] = 'data added!'
     return jsonify(response_object)
 
-@app.route('/getGeofence/<vehicle_name>', methods=['GET'])
-def get_geofence(vehicle_name):
-    result={}
-    if vehicle_name == 'MAC':
-        result = MACTable.all()
-    elif vehicle_name == 'ERU':
-        result = ERUTable.all()
-    elif vehicle_name == 'MEA':
-        result = MEATable.all()
-    return jsonify(result[0]['geofence']) if not is_empty(result) else jsonify([])
+@app.route('/api/marketplace', methods=['GET'])
+def get_marketplace():
+    result = MarketplaceTable.all()
+    return jsonify(result[0]['marketplace']) if not is_empty(result) else jsonify([])
 
-@app.route('/gcs/geofence/<vehicle_id>', methods=['DELETE'])
-def remove_geofence(vehicle_id):
-    if(vehicle_id == 'MAC'):
-        MACTable.truncate()
-    elif(vehicle_id == 'ERU'):
-        ERUTable.truncate()
-    elif(vehicle_id == 'MEA'):
-        MEATable.truncate()
-    else: pass
+@app.route('/api/marketplace', methods=['DELETE'])
+def remove_marketplace():
+    MarketplaceTable.truncate()
     return "DELETE SUCCESS"
 
-@app.route('/postERUDropLocation', methods=['POST'])
-def post_drop_location():
-    response_object = {'status': 'success'}
-    drop_coordinates = request.get_json(force=True)
-    if is_correct_coordinates_format(drop_coordinates):
-        dropCoordinatesTable.truncate()
-        dropCoordinatesTable.insert(drop_coordinates)
-        response_object['message'] = 'data added!'
-    return jsonify(response_object)
 
-@app.route('/postEvacuationZone', methods=['POST'])
-def post_evacuation_zone():
-    response_object = {'status': 'success'}
-    evac_coordinates = request.get_json(force=True)
-    if is_correct_coordinates_format(evac_coordinates):
-        evacuationCoordinatesTable.truncate()
-        evacuationCoordinatesTable.insert(evac_coordinates)
-        response_object['message'] = 'data added!'
-    return jsonify(response_object)
-
-# return drop location for MAC and evacuation zone for MEA and ERU
-@app.route('/getMissionWaypoint/<vehicle_name>', methods=['GET'])
-def get_mission_waypoint(vehicle_name):
-    result={}
-    if request.method == 'GET':
-        if(vehicle_name == 'MAC'):
-            result = dropCoordinatesTable.all()
-        elif(vehicle_name == 'MEA' or vehicle_name == 'ERU'):
-            result = evacuationCoordinatesTable.all()
-        else: pass
-    return jsonify(result[0]) if not is_empty(result) else jsonify({})
-
-# each vechicle has its own home location
-@app.route('/postHomeCoordinates/<vehicle_name>', methods=['POST'])
-def post_home_location(vehicle_name):
-    response_object = {'status': 'success'}
-    home_coordinates = request.get_json(force=True)
-    if is_correct_coordinates_format(home_coordinates):
-        if(vehicle_name == 'MAC'):
-            homeLocationTable.upsert(home_coordinates, query.vehicle=='MAC')
-        elif(vehicle_name == 'ERU'):
-            homeLocationTable.upsert(home_coordinates, query.vehicle=='ERU')
-        elif(vehicle_name == 'MEA'):
-            homeLocationTable.upsert(home_coordinates, query.vehicle=='MEA')
-        else: pass
-        response_object['message'] = 'data added!'
-    return jsonify(response_object)
-
-# each vehicle has its own home location
-@app.route('/getHomeCoordinates/<vehicle_name>', methods=['GET'])
-def get_home_location(vehicle_name):
-    result={}
-    if request.method == 'GET':
-        if(vehicle_name == 'MAC'):
-            result=homeLocationTable.search(query.vehicle == 'MAC')
-        elif(vehicle_name == 'ERU'):
-            result=homeLocationTable.search(query.vehicle == 'ERU')
-        elif(vehicle_name == 'MEA'):
-            result=homeLocationTable.search(query.vehicle == 'MEA')
-        else: pass
-    return jsonify(result[0]) if not is_empty(result) else jsonify({})
-
-@app.route('/postSearchArea', methods=['POST'])
-def post_search_area():
-    response_object = {'status': 'success'}
-    if request.method == 'POST':
-        search_area_coordinates = request.get_json(force=True)
-        searchAreaTable.truncate()
-        searchAreaTable.insert(search_area_coordinates)
-        response_object['message'] = 'data added!'
-    return jsonify(response_object)
-
-@app.route('/getSearchArea', methods=['GET'])
-def get_search_area():
-    result={}
-    if request.method == 'GET':
-        result = searchAreaTable.all()
-    return jsonify(result[0]["search_area"]) if not is_empty(result) else jsonify([])
 
 ####### Uncommend to completely remove all tables and run again
-# db.drop_table('MAC')
-# db.drop_table('ERU')
-# db.drop_table('MEA')
-# db.drop_table('drop_coordinates')
-# db.drop_table('evacuation_coordinates')
-# db.drop_table('search_area_coordinates')
-# db.drop_table('home_coordinates')
+# db.drop_table('Marketplace')
 ####### Uncomment below to empty out all tablesand run again
 # MACTable.truncate()
-# ERUTable.truncate()
-# MEATable.truncate()
-# dropCoordinatesTable.truncate()
-# evacuationCoordinatesTable.truncate()
-# searchAreaTable.truncate()
-# homeLocationTable.truncate()
 
 
 # the host value allows traffic from anywhere to run this

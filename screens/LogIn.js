@@ -21,7 +21,7 @@ const LogIn = ({ navigation }) => {
   // const navigation = useNavigation();
 
   useEffect(() => {
-    axios.get('http://192.168.12.194:5000/getHomeCoordinates/MAC')
+    axios.get('http://192.168.12.194:5000/getGeofence/MAC')
     .then(response => {
       const res = response.data;
       // setUserProfile({account});

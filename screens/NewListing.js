@@ -1,5 +1,7 @@
 import React , {Component} from 'react'
 import { SafeAreaView, Text, StyleSheet, View, TextInput, Keyboard, TouchableWithoutFeedback} from "react-native";
+import { RectButton } from '../components';
+import { SIZES } from '../constants';
 import {FocusedStatusBar } from "../components";
 import { COLORS} from "../constants";
 import ActionButton from 'react-native-action-button'
@@ -34,10 +36,15 @@ const NewListing = () => {
                   multiline
                   numberOfLines={4}
                 >
-                  
+
                 </TextInput>
               </View>
-            </TouchableWithoutFeedback>  
+            </TouchableWithoutFeedback>
+            {/* <RectButton
+              minWidth={20}
+              fontSize={SIZES.font}
+              handlePress={() => navigation.navigate("LogIn", {navigation})}
+            /> */}
             <ActionButton buttonColor="rgba(231,76,60,1)">
               <ActionButton.Item buttonColor='#9b59b6' title="Take Photo" onPress={() => console.log("Take photo button tapped!")}>
                 <Icon name="camera-outline" style={styles.actionButtonIcon} />
