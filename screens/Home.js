@@ -60,7 +60,7 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     getNFTData();
-  }, []);
+  }, [currentPage]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
