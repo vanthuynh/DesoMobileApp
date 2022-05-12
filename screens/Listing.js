@@ -2,7 +2,10 @@ import React, {useEffect, useState} from 'react'
 import { View, SafeAreaView, Text, FlatList, Image, StyleSheet, ActivityIndicator, StatusBar, Button, Alert, TouchableOpacity } from "react-native";
 import axios from "axios";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Listing = () => {
+const Listing = ({ posts }) => {
+  console.log('=============================')
+  console.log(posts);
+  console.log('=============================')
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);

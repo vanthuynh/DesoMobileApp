@@ -30,18 +30,8 @@ const NewListing = () => {
   return (
       <SafeAreaView style={{flex:1,justifyContent: "center",alignItems: "center"}}>
           <FocusedStatusBar backgroundColor={COLORS.primary} />
-          <View style={styles.container}>
-            <View>
-              <Text style={styles.header}>Settings</Text>
-            </View>
-          </View>
-          <View style={styles.inputContainer}>
-            <TouchableOpacity style={styles.saveButton} onPress={handleSubmit}>
-              <Text style={styles.saveButtonText}>Submit Post</Text>
-            </TouchableOpacity>
-          </View>
-          <SliderDemo />
           <View >
+
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
               <View style={{
                 flex: 1,
