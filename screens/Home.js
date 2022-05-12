@@ -8,7 +8,7 @@ import { COLORS, NFTData } from "../constants";
 
 // hard code for signing transaction
 import signTransaction from "../components/signTransaction";
-
+import {API} from '../utils/development';
 const Home = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +42,7 @@ const Home = ({navigation}) => {
   };
   const getNFTData = () => {
     setIsLoading(true);
-    axios.get(`http://192.168.1.21:5000/api/marketplace`)
+    axios.get(`http://10.110.228.226:5000/api/marketplace`)
       .then(response => {
         if(response.data !== userData) {
           console.log('data change');
